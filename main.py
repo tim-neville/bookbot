@@ -1,13 +1,11 @@
 from stats import count_words
 from stats import count_characters
+from stats import sort_chars_and_counts
 
 def get_book_text(filepath):
     with open(filepath) as f:
         file_contents = f.read()
     return file_contents
-
-def sort_on(items):
-    return items["count"]
 
 def main():
     print("============ BOOKBOT ============")
@@ -20,15 +18,13 @@ def main():
     print(f"Found {word_count} total words")
 
     print("--------- Character Count -------")
-    character_counts = count_characters(file_contents)
+    character_counts_dict = count_characters(file_contents)
 
-    #double dictionary char: value and count: value
+    sorted_list_char_counts = sort_chars_and_counts(character_counts_dict)
 
-    # character_counts.sort(reverse=True, key=sort_on)
-
-    for key in character_counts:
-        value = character_counts[key]
-        print(f"'{key}': {value}")
+    for key in sorted_list_char_counts:
+        if (key["char"].isalpha()):
+            print(f"{key["char"]}: {key["num"]}")
 
     print("============= END ===============")
 

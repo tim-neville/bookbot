@@ -14,3 +14,19 @@ def count_characters(input_text):
 
     return character_counts
     
+def sort_on(items):
+    return items["num"]
+
+def sort_chars_and_counts(character_counts_dict):
+    chars_counts_list = []
+    #double dictionary char: character_counts [key] and count: character_counts [value]
+
+    # character_counts.sort(reverse=True, key=sort_on)
+
+    for key in character_counts_dict:
+        value = character_counts_dict[key]
+        chars_counts_list.append({"char":key, "num":value})
+
+    chars_counts_list.sort(reverse=True, key=sort_on)
+
+    return chars_counts_list
