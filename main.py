@@ -8,16 +8,18 @@ def get_book_text(filepath):
         file_contents = f.read()
     return file_contents
 
-def missing_sys_args(args):
-    return len(args) < 2
-
-def main():
-    if (missing_sys_args):
+def check_filepath(args):
+    try:
+        filepath=args[1]
+        return filepath
+    except Exception as e:
         print("Usage: python3 main.py <path_to_book>")
         sys.exit(1)
 
+def main():
+    filepath = check_filepath(sys.argv)
+
     print("============ BOOKBOT ============")
-    filepath="books/frankenstein.txt"
     print(f"Analyzing book found at {filepath}...")
     file_contents = get_book_text(filepath)
 
